@@ -1,11 +1,9 @@
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 
 import * as Dialog from '@radix-ui/react-dialog';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, A11y } from 'swiper';
-import 'swiper/css';
-import 'swiper/css/navigation';
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
 
 import { GameBanner } from './components/GameBanner';
 import { CreateAdBanner } from './components/CreateAdBanner';
@@ -16,6 +14,7 @@ import LogoImg from './assets/images/Logo.svg';
 import axios from 'axios';
 
 import './styles/main.css';
+import './styles/AliceCarouselStyles.css'
 
 export interface GamesTypes {
   id: string;
@@ -34,6 +33,16 @@ function App() {
       .then(resp => setGames(resp.data));
   }, []);
 
+  const responsive = {
+      800: { items: 6 },
+  };
+
+  const items = games.map(game => {
+    return (
+      <GameBanner key={game.id} bannerUrl={game.bannerUrl} title={game.title} adsCount={game._count.Ads} />
+    );
+  });
+
   return (
     <div className="max-w-[1344px] mx-auto flex flex-col items-center my-20 px-3">
       <img src={LogoImg} alt="" />
@@ -45,24 +54,7 @@ function App() {
         &nbsp;está aqui.
       </h1>
 
-      <Swiper
-        className="w-full mt-16"
-        modules={[Navigation, A11y]}
-        slidesPerView={6}
-        navigation
-        onSwiper={(swiper: any) => console.log(swiper)}
-        onSlideChange={() => console.log('slide change')}
-      >
-        {
-          games.map(game => {
-            return (
-              <SwiperSlide className="flex justify-center">
-                <GameBanner key={game.id} bannerUrl={game.bannerUrl} title={game.title} adsCount={game._count.Ads} />
-              </SwiperSlide>
-            );
-          })
-        }
-      </Swiper>
+      <AliceCarousel mouseTracking items={items} responsive={responsive} />
 
       <Dialog.Root>
         <CreateAdBanner />
