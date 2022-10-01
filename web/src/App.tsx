@@ -25,6 +25,49 @@ export interface GamesTypes {
   }
 }
 
+const staticItems = [
+  {
+    bannerUrl: "https://static-cdn.jtvnw.net/ttv-boxart/29307_IGDB-188x250.jpg",
+    title: "Path of Exile",
+    adsCount: 2,
+  },
+  {
+    bannerUrl: "https://static-cdn.jtvnw.net/ttv-boxart/32982_IGDB-188x250.jpg",
+    title: "GTA",
+    adsCount: 0,
+  },
+  {
+    bannerUrl: "https://static-cdn.jtvnw.net/ttv-boxart/29595-188x250.jpg",
+    title: "Dota 2",
+    adsCount: 4,
+  },
+  {
+    bannerUrl: "https://static-cdn.jtvnw.net/ttv-boxart/32399_IGDB-188x250.jpg",
+    title: "Counter Strike",
+    adsCount: 2,
+  },
+  {
+    bannerUrl: "https://static-cdn.jtvnw.net/ttv-boxart/1678052513_IGDB-188x250.jpg",
+    title: "Call of Duty: Modern WarFare II",
+    adsCount: 1,
+  },
+  {
+    bannerUrl: "https://static-cdn.jtvnw.net/ttv-boxart/33214-188x250.jpg",
+    title: "Fortnite",
+    adsCount: 3,
+  },
+  {
+    bannerUrl: "https://static-cdn.jtvnw.net/ttv-boxart/21779-188x250.jpg",
+    title: "League of Legends",
+    adsCount: 5,
+  },
+  {
+    bannerUrl: "https://static-cdn.jtvnw.net/ttv-boxart/516575-188x250.jpg",
+    title: "Valorant",
+    adsCount: 5,
+  },
+];
+
 function App() {
   const [games, setGames] = useState<GamesTypes[]>([]);
 
@@ -34,12 +77,16 @@ function App() {
   }, []);
 
   const responsive = {
-      800: { items: 6 },
+    0: { items: 3 / 2 },
+    360: { items: 2 },
+    475: { items: 3 },
+    675: { items: 4 },
+    800: { items: 6 },
   };
 
-  const items = games.map(game => {
+  const items = staticItems.map((game, index) => {
     return (
-      <GameBanner key={game.id} bannerUrl={game.bannerUrl} title={game.title} adsCount={game._count.Ads} />
+      <GameBanner key={index} bannerUrl={game.bannerUrl} title={game.title} adsCount={game.adsCount} />
     );
   });
 
@@ -47,7 +94,7 @@ function App() {
     <div className="max-w-[1344px] mx-auto flex flex-col items-center my-20 px-3">
       <img src={LogoImg} alt="" />
 
-      <h1 className="text-6xl text-white font-black mt-20">Seu&nbsp;
+      <h1 className="text-mainTitleResponsive text-white font-black mt-20">Seu&nbsp;
         <span className="bg-duo-gradient bg-clip-text text-transparent">
           duo
         </span> 

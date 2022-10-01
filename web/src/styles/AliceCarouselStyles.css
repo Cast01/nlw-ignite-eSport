@@ -19,7 +19,6 @@
     top: 50%;
     transform: translateY(-50%);
     padding: 0;
-    background: rgba(0, 0, 0, .7);
     height: 100%;
 }
 .alice-carousel__prev-btn span, .alice-carousel__next-btn span {
