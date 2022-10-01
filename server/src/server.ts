@@ -11,7 +11,7 @@ const prisma = new PrismaClient();
 app.use(express.json());
 app.use(cors());
 
-// HTTP Methods / API RESTful / HTTP Codes 
+// HTTP Methods / API RESTful / HTTP Codess
 
 app.get("/games", async (request, response) => {
     const games = await prisma.game.findMany({
