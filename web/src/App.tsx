@@ -14,7 +14,8 @@ import LogoImg from './assets/images/Logo.svg';
 import axios from 'axios';
 
 import './styles/main.css';
-import './styles/AliceCarouselStyles.css'
+import './styles/bodyBackground.css';
+import './styles/AliceCarouselStyles.css';
 
 export interface GamesTypes {
   id: string;
